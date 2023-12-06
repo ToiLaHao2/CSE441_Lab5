@@ -8,21 +8,10 @@ import {
 } from 'react-native-popup-menu';
 import {Icon} from 'react-native-paper';
 import axios from 'axios';
-import {useIsFocused} from '@react-navigation/native';
-import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 function ServiceDetail({navigation, route}) {
   const {item} = route.params;
   const [detail, setDetail] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
-
-  const isFocused = useIsFocused();
-
-  useEffect(() => {
-    if (isFocused) {
-      getService();
-    }
-  }, [isFocused]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -35,13 +24,11 @@ function ServiceDetail({navigation, route}) {
   }, [navigation]);
 
   function getService() {
-    const axios = require('axios').default;
     axios
       .get('https://kami-backend-5rs0.onrender.com/services/' + item._id)
       .then(function (response) {
         setDetail(response.data);
         //console.log(response.data);
-        setIsLoading(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -49,7 +36,6 @@ function ServiceDetail({navigation, route}) {
   }
 
   function deleteService() {
-    const axios = require('axios').default;
     axios
       .delete('https://kami-backend-5rs0.onrender.com/services/' + item._id)
       .then(function (response) {
@@ -82,7 +68,7 @@ function ServiceDetail({navigation, route}) {
     return (
       <Menu>
         <MenuTrigger>
-          <Icon source="dots-vertical" size={25} color="white" />
+          <Icon source="dots-vertical" size={25} color="black" />
         </MenuTrigger>
         <MenuOptions>
           <MenuOption
@@ -97,10 +83,6 @@ function ServiceDetail({navigation, route}) {
     );
   };
 
-  if (isLoading) {
-    return <Text>Loading...</Text>;
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.textContainer}>
@@ -113,7 +95,7 @@ function ServiceDetail({navigation, route}) {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Creator: </Text>
-        <Text>{detail.user.name}</Text>
+        <Text>{detail.createdBy}</Text>
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.title}>Time: </Text>

@@ -13,7 +13,7 @@ import {Button, Icon, IconButton, Appbar} from 'react-native-paper';
 import {Image} from 'react-native';
 import ServiceDetail from './ServiceDetail';
 import {useIsFocused} from '@react-navigation/native';
-import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+import axios from 'axios';
 
 keyExtractor = ({_id}) => _id;
 
@@ -39,7 +39,6 @@ function Home({navigation}) {
   }, [isFocused]);
 
   function getServices() {
-    const axios = require('axios').default;
     axios
       .get('https://kami-backend-5rs0.onrender.com/services')
       .then(function (response) {

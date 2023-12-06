@@ -8,7 +8,6 @@ function EditService({navigation, route}) {
   const {item} = route.params;
   const [name, setName] = useState(item.name);
   const [price, setPrice] = useState(item.price);
-  const axios = require('axios').default;
   function UpdateService() {
     axios
       .put('https://kami-backend-5rs0.onrender.com/services/' + item._id, {

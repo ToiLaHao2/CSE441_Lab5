@@ -21,7 +21,6 @@ function AddService({navigation}) {
     }
   };
 
-  const axios = require('axios').default;
   function addService() {
     getData();
     axios
