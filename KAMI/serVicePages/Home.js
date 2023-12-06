@@ -11,7 +11,6 @@ import {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Button, Icon, IconButton, Appbar} from 'react-native-paper';
 import {Image} from 'react-native';
-import ServiceDetail from './ServiceDetail';
 import {useIsFocused} from '@react-navigation/native';
 import axios from 'axios';
 
