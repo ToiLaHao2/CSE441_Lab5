@@ -26,7 +26,7 @@ const Login = () => {
       })
       .catch(function (error) {
         console.log(error);
-        Alert.alert('Wrong phone number or password');
+        Alert.alert('Wrong information');
       });
   }
 
